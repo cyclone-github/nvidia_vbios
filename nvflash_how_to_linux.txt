@@ -1,0 +1,31 @@
+# by cyclone
+# https://github.com/cyclone-github/nvidia_vbios/
+# instructions for flashing nvidia vbios with nvflash on linux
+# tested on debian 11, 12, 13
+# updated: 2025-11-11
+# must run as root
+
+1. First, make sure latest nvflash is installed and working
+https://www.techpowerup.com/download/nvidia-nvflash/
+extract zip file and confirm nvflash detects gpu:
+./nvflash --list
+
+2. Unload nvidia processes
+rmmod nvidia_drm nvidia_modeset nvidia
+
+3. Back gpu rom
+./nvflash --save vbios_backup.rom
+
+4. Unprotect gpu
+./nvflash --protectoff
+
+5. Flash gpu vbios
+./nvflash vbios_new.rom
+
+6. If there is a subsystem mismatch, use -6 to override (careful!)
+./nvflash -6 vbios_new.rom
+
+7. Confirm new vbios
+./nvflash --version
+
+8. Reboot rig
