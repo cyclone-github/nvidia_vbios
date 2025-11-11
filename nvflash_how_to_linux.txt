@@ -11,7 +11,7 @@ extract zip file and confirm nvflash detects gpu:
 ./nvflash --list
 
 2. Unload nvidia processes
-rmmod nvidia_drm nvidia_modeset nvidia
+rmmod nvidia_drm nvidia_modeset nvidia_uvm nvidia
 
 3. Back gpu rom
 ./nvflash --save vbios_backup.rom
